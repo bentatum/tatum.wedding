@@ -1,0 +1,23 @@
+{
+  "plugins": [
+    [
+      "module-resolver",
+      { "root": ["./"] }
+    ]
+  ],
+  "env": {
+    "development": {
+      "presets": ["next/babel", "stage-0"]
+    },
+    "production": {
+      "presets": ["next/babel", "stage-0"]
+    },
+    "test": {
+      "presets": [
+        ["env", { "modules": "commonjs" }],
+        "next/babel",
+        "stage-0"
+      ]
+    }
+  }
+}
