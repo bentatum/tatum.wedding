@@ -13,8 +13,11 @@ import { set } from '../actions'
 export default function * (action) {
   try {
     yield put(pending(READ))
-    const images = yield call(rsfb.database.read, 'wedding-photos')
-    console.log(images)
+    let images = []
+    const snapshot = yield call(rsfb.firestore.getCollection, 'wedding-photos')
+    snapshot.forEach(img => {
+      images.push(img.data())
+    })
     yield all([put(success(READ)), put(set({ images }))])
     yield put(success(READ))
   } catch (err) {

@@ -1,3 +1,4 @@
+import { get } from 'lodash'
 import Dialog, {
   DialogActions,
   DialogContent,
@@ -30,7 +31,7 @@ export default enhance(({ imgLoaded, onImageLoad, classes, img, open, onClose })
     }
     <DialogContent>
       <div className={classnames({ [classes.maskImg]: !imgLoaded })}>
-        <img onLoad={onImageLoad} src={img} className={classes.img} />
+        <img onLoad={onImageLoad} src={get(img, 'large')} className={classes.img} />
       </div>
     </DialogContent>
     {imgLoaded &&
@@ -38,7 +39,7 @@ export default enhance(({ imgLoaded, onImageLoad, classes, img, open, onClose })
         <Button raised onClick={onClose}>
           Close
         </Button>
-        <Button raised color='primary' onClick={() => window.open(img)}>
+        <Button raised color='primary' onClick={() => window.open(get(img, 'full'))}>
           Download
         </Button>
       </DialogActions>

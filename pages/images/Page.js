@@ -26,6 +26,16 @@ function getGridListCols (size) {
   }
 }
 
+function getImgSize (size) {
+  switch (size) {
+    case 'small':
+    case 'extraSmall':
+      return 'medium'
+    default:
+      return 'small'
+  }
+}
+
 const enhance = compose(
   withMUI,
   withRedux(state => ({
@@ -88,7 +98,7 @@ class Page extends React.Component {
             <GridList cols={gridCols}>
               {images.map((img, key) => (
                 <GridListTile key={key} cols={1} onClick={() => onImgClick(img)}>
-                  <img src={img} />
+                  <img src={img[getImgSize(browser.mediaType)]} />
                 </GridListTile>
               ))}
             </GridList>
