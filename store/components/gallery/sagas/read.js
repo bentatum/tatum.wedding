@@ -1,4 +1,5 @@
 import { rsfb } from 'lib'
+import { shuffle } from 'lodash'
 import { all, call, put } from 'redux-saga/effects'
 import {
   pending,
@@ -8,7 +9,6 @@ import {
 } from 'store/components/async/actions'
 import { READ } from '../actionTypes'
 import { set } from '../actions'
-// import { compact } from 'lodash'
 
 export default function * (action) {
   try {
@@ -18,6 +18,7 @@ export default function * (action) {
     snapshot.forEach(img => {
       images.push(img.data())
     })
+    images = shuffle(images)
     yield all([put(success(READ)), put(set({ images }))])
     yield put(success(READ))
   } catch (err) {
