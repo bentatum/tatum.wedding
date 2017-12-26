@@ -13,13 +13,11 @@ function getGridListCols (size) {
     case 'small':
       return 2
     case 'medium':
-      return 5
+      return 4
     case 'large':
-      return 6
     case 'extraLarge':
-      return 8
     case 'infinity':
-      return 10
+      return 6
     case 'extraSmall':
     default:
       return 1
@@ -49,10 +47,25 @@ const enhance = compose(
   withState('fullScreen', 'toggleFullScreen', false),
   withState('fullScreenImg', 'setFullScreenImg', null),
   withState('gridCols', 'setGridCols'),
+  withState('showCaptcha', 'toggleCaptcha'),
+  withState('queuedImgForDownload', 'queueImgForDownload'),
   withHandlers({
     onImgClick: props => img => {
       props.toggleFullScreen(true)
       props.setFullScreenImg(img)
+    },
+    handleImageDownloadClick: props => img => {
+      props.toggleCaptcha(true)
+      props.queueImgForDownload(img)
+    },
+    handleCaptchaComplete: props => () => {
+      window.open(props.queuedImgForDownload.full, '_blank')
+      props.toggleFullScreen(false)
+    },
+    handleImageDialogExited: props => () => {
+      props.setFullScreenImg(null)
+      props.toggleCaptcha(false)
+      props.queueImgForDownload(null)
     }
   }),
   withStyles(require('./style').default)
@@ -83,21 +96,29 @@ class Page extends React.Component {
       toggleFullScreen,
       browser,
       gridCols,
-      classes
+      classes,
+      showCaptcha,
+      handleCaptchaComplete,
+      handleImageDownloadClick,
+      handleImageDialogExited
     } = this.props
 
     return (
       <Layout>
-        {!gridCols &&
+        {!gridCols && (
           <div className={classes.progress}>
             <CircularProgress />
           </div>
-        }
-        {gridCols &&
+        )}
+        {gridCols && (
           <div className={classes.grid}>
             <GridList cols={gridCols}>
               {images.map((img, key) => (
-                <GridListTile key={key} cols={1} onClick={() => onImgClick(img)}>
+                <GridListTile
+                  key={key}
+                  cols={1}
+                  onClick={() => onImgClick(img)}
+                >
                   <img src={img[getImgSize(browser.mediaType)]} />
                 </GridListTile>
               ))}
@@ -105,11 +126,14 @@ class Page extends React.Component {
             <ImageDialog
               open={fullScreen}
               img={fullScreenImg}
+              showCaptcha={showCaptcha}
+              onDowloadClick={handleImageDownloadClick}
+              captchaCallback={handleCaptchaComplete}
               onClose={() => toggleFullScreen(false)}
-              onExited={() => setFullScreenImg(null)}
+              onExited={handleImageDialogExited}
             />
           </div>
-        }
+        )}
       </Layout>
     )
   }

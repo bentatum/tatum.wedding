@@ -45,7 +45,9 @@ export default class MyDocument extends Document {
     return (
       <html lang='en' dir='ltr'>
         <Head>
-          <title>Allie & Ben Tatum - Tatum Wedding Photos, Videos and GuestBook</title>
+          <title>
+            Allie & Ben Tatum - Tatum Wedding Photos, Videos and GuestBook
+          </title>
           <meta charSet='utf-8' />
           <meta name='robots' content='noindex, nofollow' />
           {/* Use minimum-scale=1 to enable GPU rasterization */}
@@ -69,6 +71,21 @@ export default class MyDocument extends Document {
           <link
             rel='stylesheet'
             href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700'
+          />
+          <script
+            async
+            src='https://www.googletagmanager.com/gtag/js?id=UA-76151192-6'
+          />
+          <script
+            dangerouslySetInnerHTML={{
+              __html: `
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+
+            gtag('config', 'UA-76151192-6');
+          `
+            }}
           />
         </Head>
         <body style={{ minHeight: '100vh' }}>

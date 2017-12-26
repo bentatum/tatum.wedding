@@ -15,12 +15,8 @@ export default enhance(({ classes }) => (
         </span>
         Allie & Ben Tatum
       </Typography>
-      <Button color='primary'>
-        Images
-      </Button>
-      <Button color='primary'>
-        Videos
-      </Button>
+      <Button color='primary'>Images</Button>
+      <Button color='primary'>Videos</Button>
     </Toolbar>
   </AppBar>
 ))

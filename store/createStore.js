@@ -2,7 +2,7 @@ import sagas from './sagas'
 import reducer from './reducer'
 import reduxSaga from 'redux-saga'
 import { applyMiddleware, createStore, compose } from 'redux'
-import {responsiveStoreEnhancer} from 'redux-responsive'
+import { responsiveStoreEnhancer } from 'redux-responsive'
 
 const createSagaMiddleware =
   typeof reduxSaga === 'object' ? reduxSaga.default : reduxSaga // huh?

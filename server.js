@@ -10,10 +10,8 @@ app.prepare()
 .then(() => {
   const server = express()
 
-  // server.get('/blog/:post', (req, res) => app.render(req, res, '/blog', req.params))
-  // server.get('/home', (req, res) => app.redirect('/'))
-  // server.get('/', (req, res) => app.render(req, res, '/home'))
-  server.get('*', (req, res) => app.render(req, res, '/images'))
+  server.get('/', (req, res) => res.redirect('/images'))
+  server.get('*', (req, res) => handle(req, res))
 
   server.listen(port, (err) => {
     if (err) throw err

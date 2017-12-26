@@ -1,5 +1,5 @@
 import { combineReducers } from 'redux'
-import {responsiveStateReducer} from 'redux-responsive'
+import { responsiveStateReducer } from 'redux-responsive'
 
 const reducers = {
   // form: require('redux-form').reducer,

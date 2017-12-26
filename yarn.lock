@@ -3559,6 +3559,10 @@ load-json-file@^4.0.0:
     pify "^3.0.0"
     strip-bom "^3.0.0"
 
+load-script@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/load-script/-/load-script-1.0.0.tgz#0491939e0bee5643ee494a7e3da3d2bac70c6ca4"
+
 loader-runner@^2.3.0:
   version "2.3.0"
   resolved "https://registry.yarnpkg.com/loader-runner/-/loader-runner-2.3.0.tgz#f482aea82d543e07921700d5a46ef26fdac6b8a2"
@@ -4826,6 +4830,12 @@ rc@^1.1.7:
     ini "~1.3.0"
     minimist "^1.2.0"
     strip-json-comments "~2.0.1"
+
+react-coinhive@^1.0.2:
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/react-coinhive/-/react-coinhive-1.0.2.tgz#3d38086cea5fd5ae8fa0ef1e165587d43ae50457"
+  dependencies:
+    load-script "^1.0.0"
 
 react-deep-force-update@^2.1.1:
   version "2.1.1"
