@@ -1,4 +1,4 @@
-import React from 'React'
+import React from 'react'
 import { get } from 'lodash'
 import Dialog, {
   DialogActions,
@@ -34,7 +34,8 @@ export default enhance(
     showCaptcha,
     onDowloadClick,
     captchaCallback,
-    onExited
+    onExited,
+    newTabBlocked
   }) => (
     <Dialog maxWidth='md' onClose={onClose} open={open} onExited={onExited}>
       {showCaptcha && (
@@ -54,6 +55,16 @@ export default enhance(
                 internet of money
               </a>. As soon as this is complete, the image will load in another tab.
             </Typography>
+            {newTabBlocked &&
+              <div className={classes.captchaPopUpBlocked}>
+                <Typography type='subheading' classes={{ root: classes.captchaSubHeading }} gutterBottom>
+                  Your popups are blocked, click the link below.
+                </Typography>
+                <Typography type='title' component='a' href={img.full} target='_blank' classes={{ root: classes.captchaSubHeading }}>
+                  {img.full}
+                </Typography>
+              </div>
+            }
           </div>
         </React.Fragment>
       )}

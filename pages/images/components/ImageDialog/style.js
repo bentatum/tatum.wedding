@@ -32,5 +32,8 @@ export default theme => ({
   captchaSubHeading: {
     textAlign: 'center',
     marginTop: theme.spacing.unit
+  },
+  captchaPopUpBlocked: {
+    marginTop: theme.spacing.unit * 4
   }
 })

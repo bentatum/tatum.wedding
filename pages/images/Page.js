@@ -49,6 +49,7 @@ const enhance = compose(
   withState('gridCols', 'setGridCols'),
   withState('showCaptcha', 'toggleCaptcha'),
   withState('queuedImgForDownload', 'queueImgForDownload'),
+  withState('newTabBlocked', 'setNewTabBlocked'),
   withHandlers({
     onImgClick: props => img => {
       props.toggleFullScreen(true)
@@ -59,8 +60,13 @@ const enhance = compose(
       props.queueImgForDownload(img)
     },
     handleCaptchaComplete: props => () => {
-      window.open(props.queuedImgForDownload.full, '_blank')
-      props.toggleFullScreen(false)
+      const newTab = window.open(props.queuedImgForDownload.full, '_blank')
+
+      if (!newTab || newTab.closed || typeof newTab.closed == 'undefined')  {
+        props.setNewTabBlocked(true)
+      } else {
+        props.toggleFullScreen(false)
+      }
     },
     handleImageDialogExited: props => () => {
       props.setFullScreenImg(null)
@@ -99,7 +105,8 @@ class Page extends React.Component {
       showCaptcha,
       handleCaptchaComplete,
       handleImageDownloadClick,
-      handleImageDialogExited
+      handleImageDialogExited,
+      newTabBlocked
     } = this.props
 
     return (
@@ -126,6 +133,7 @@ class Page extends React.Component {
               open={fullScreen}
               img={fullScreenImg}
               showCaptcha={showCaptcha}
+              newTabBlocked={newTabBlocked}
               onDowloadClick={handleImageDownloadClick}
               captchaCallback={handleCaptchaComplete}
               onClose={() => toggleFullScreen(false)}
