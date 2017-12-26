@@ -91,7 +91,6 @@ class Page extends React.Component {
       onImgClick,
       fullScreen,
       fullScreenImg,
-      setFullScreenImg,
       images,
       toggleFullScreen,
       browser,

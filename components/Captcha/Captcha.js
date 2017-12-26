@@ -1,11 +1,12 @@
 import React from 'react'
 import loadScript from 'load-script'
+import { defaultProps } from 'recompact'
 
-export default class Captcha extends React.Component {
-  static defaultProps = {
-    siteKey: '7PCbUl5UsEaHOq3Mn8zFHhXbfYdQ7Li5'
-  }
+const enhance = defaultProps({
+  siteKey: '7PCbUl5UsEaHOq3Mn8zFHhXbfYdQ7Li5'
+})
 
+class Captcha extends React.Component {
   async componentWillMount () {
     window['@@tatumWedding/captcha/callback'] = this.props.callback
     await loadScript('https://authedmine.com/lib/captcha.min.js')
@@ -25,3 +26,5 @@ export default class Captcha extends React.Component {
     )
   }
 }
+
+export default enhance(Captcha)

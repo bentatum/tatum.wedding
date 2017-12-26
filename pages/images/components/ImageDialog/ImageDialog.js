@@ -1,10 +1,8 @@
+import React from 'React'
 import { get } from 'lodash'
 import Dialog, {
   DialogActions,
-  DialogContent,
-  DialogContentText,
-  DialogTitle,
-  withMobileDialog
+  DialogContent
 } from 'material-ui/Dialog'
 import Button from 'material-ui/Button'
 import { withStyles } from 'material-ui/styles'
@@ -46,7 +44,7 @@ export default enhance(
             <Typography classes={{ root: classes.captchaSubHeading }}>
               Serving fast websites and high quality photographs can be costly.
               We want to make sure everyone is able to view the photos of our
-              wedding as it was intended (at full quality!). This widget helps
+              wedding as they were intended. This widget helps
               us pay for everything by momentarily using your computer to solve
               a few math problems and contribute to the{' '}
               <a
