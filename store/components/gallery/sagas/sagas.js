@@ -1,5 +1,8 @@
-import { takeLatest } from 'redux-saga/effects'
+import { all, takeLatest } from 'redux-saga/effects'
 
 export default function * () {
-  yield takeLatest(require('../actionTypes').READ, require('./read').default)
+  yield all([
+    takeLatest(require('../actionTypes').READ_IMAGES, require('./readImages').default),
+    takeLatest(require('../actionTypes').READ_VIDEOS, require('./readVideos').default)
+  ])
 }

@@ -3,7 +3,7 @@ import Layout from 'layout'
 import { withRedux, withMUI } from 'components'
 import { GridList, GridListTile } from 'material-ui/GridList'
 import { withHandlers, withState, setStatic, compose } from 'recompact'
-import { read } from 'store/components/gallery/actions'
+import { readImages } from 'store/components/gallery/actions'
 import { ImageDialog } from './components'
 import { CircularProgress } from 'material-ui/Progress'
 import { withStyles } from 'material-ui/styles'
@@ -41,7 +41,7 @@ const enhance = compose(
     browser: state.browser
   })),
   setStatic('getInitialProps', async ({ store }) => {
-    await store.dispatch(read())
+    await store.dispatch(readImages())
     return {}
   }),
   withState('fullScreen', 'toggleFullScreen', false),
@@ -62,7 +62,7 @@ const enhance = compose(
     handleCaptchaComplete: props => () => {
       const newTab = window.open(props.queuedImgForDownload.full, '_blank')
 
-      if (!newTab || newTab.closed || typeof newTab.closed == 'undefined')  {
+      if (!newTab || newTab.closed || typeof newTab.closed === 'undefined') {
         props.setNewTabBlocked(true)
       } else {
         props.toggleFullScreen(false)

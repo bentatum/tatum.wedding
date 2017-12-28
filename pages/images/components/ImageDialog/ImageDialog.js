@@ -1,9 +1,6 @@
 import React from 'react'
 import { get } from 'lodash'
-import Dialog, {
-  DialogActions,
-  DialogContent
-} from 'material-ui/Dialog'
+import Dialog, { DialogActions, DialogContent } from 'material-ui/Dialog'
 import Button from 'material-ui/Button'
 import { withStyles } from 'material-ui/styles'
 import { withState, compose, withHandlers } from 'recompact'
@@ -45,26 +42,40 @@ export default enhance(
             <Typography classes={{ root: classes.captchaSubHeading }}>
               Serving fast websites and high quality photographs can be costly.
               We want to make sure everyone is able to view the photos of our
-              wedding as they were intended. This widget helps
-              us pay for everything by momentarily using your computer to solve
-              a few math problems and contribute to the{' '}
+              wedding as they were intended. This widget helps us pay for
+              everything by momentarily using your computer to solve a few math
+              problems and contribute to the{' '}
               <a
                 href='https://www.amazon.com/Internet-Money-Andreas-M-Antonopoulos/dp/1537000454'
                 target='_blank'
               >
                 internet of money
-              </a>. As soon as this is complete, the image will load in another tab.
+              </a>. As soon as this is complete, the image will load in another
+              tab or the link will appear below if your popups are blocked.
             </Typography>
-            {newTabBlocked &&
+            {newTabBlocked && (
               <div className={classes.captchaPopUpBlocked}>
-                <Typography type='subheading' classes={{ root: classes.captchaSubHeading }} gutterBottom>
-                  Your popups are blocked, click the link below.
+                <Typography
+                  type='subheading'
+                  classes={{ root: classes.captchaSubHeading }}
+                  gutterBottom
+                >
+                  It appears you are blocking popups from us. No worries, just
+                  click the link below and that will open a new window or tab
+                  with the image in it. Right click and select save and it will
+                  be saved to your computer.
                 </Typography>
-                <Typography type='title' component='a' href={img.full} target='_blank' classes={{ root: classes.captchaSubHeading }}>
+                <Typography
+                  type='title'
+                  component='a'
+                  href={img.full}
+                  target='_blank'
+                  classes={{ root: classes.captchaSubHeading }}
+                >
                   {img.full}
                 </Typography>
               </div>
-            }
+            )}
           </div>
         </React.Fragment>
       )}
@@ -88,11 +99,7 @@ export default enhance(
             <Button raised onClick={onClose}>
               Close
             </Button>
-            <Button
-              raised
-              color='primary'
-              onClick={() => onDowloadClick(img)}
-            >
+            <Button raised color='primary' onClick={() => onDowloadClick(img)}>
               Download
             </Button>
           </DialogActions>

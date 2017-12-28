@@ -25,7 +25,8 @@
     "redux-responsive": "^4.3.5",
     "redux-saga": "^0.16.0",
     "redux-saga-firebase": "^0.7.1",
-    "standard": "^10.0.3"
+    "standard": "^10.0.3",
+    "video-react": "^0.9.3"
   },
   "scripts": {
     "dev": "node server.js",

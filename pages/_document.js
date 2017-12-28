@@ -46,7 +46,7 @@ export default class MyDocument extends Document {
       <html lang='en' dir='ltr'>
         <Head>
           <title>
-            Allie & Ben Tatum - Tatum Wedding Photos, Videos and GuestBook
+            Allie & Ben Tatum - Wedding Photographs & Videos
           </title>
           <meta charSet='utf-8' />
           <meta name='robots' content='noindex, nofollow' />

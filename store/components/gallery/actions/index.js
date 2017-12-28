@@ -1,2 +1,3 @@
 export set from './set'
-export read from './read'
+export readImages from './readImages'
+export readVideos from './readVideos'

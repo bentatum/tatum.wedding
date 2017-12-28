@@ -7,22 +7,21 @@ import {
   failure,
   error
 } from 'store/components/async/actions'
-import { READ } from '../actionTypes'
+import { READ_IMAGES } from '../actionTypes'
 import { set } from '../actions'
 
 export default function * (action) {
   try {
-    yield put(pending(READ))
+    yield put(pending(READ_IMAGES))
     let images = []
     const snapshot = yield call(rsfb.firestore.getCollection, 'wedding-photos')
     snapshot.forEach(img => {
       images.push(img.data())
     })
     images = shuffle(images)
-    yield all([put(success(READ)), put(set({ images }))])
-    yield put(success(READ))
+    yield all([put(success(READ_IMAGES)), put(set({ images }))])
+    yield put(success(READ_IMAGES))
   } catch (err) {
-    console.log(err)
-    yield all([put(error(READ, err)), put(failure(READ))])
+    yield all([put(error(READ_IMAGES, err)), put(failure(READ_IMAGES))])
   }
 }
