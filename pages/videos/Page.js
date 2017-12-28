@@ -30,22 +30,30 @@ const enhance = compose(
   })
 )
 
-export default enhance(({ selectedVideo, onThumbnailClick, onCloseFullScreen, videos, classes }) => (
-  <Layout>
-    <Head>
-      <link rel='stylesheet' href='/static/video-react.css' />
-    </Head>
-    <div className={classes.grid}>
-      <GridList cols={6}>
-        {videos.map((video, key) => (
-          <GridListTile key={key} cols={1} onClick={() => onThumbnailClick(video)}>
-            <Typography>
-              {video.title}
-            </Typography>
-          </GridListTile>
-        ))}
-      </GridList>
-    </div>
-    <VideoDialog open={!!selectedVideo} video={selectedVideo} onClose={onCloseFullScreen} />
-  </Layout>
-))
+export default enhance(
+  ({ selectedVideo, onThumbnailClick, onCloseFullScreen, videos, classes }) => (
+    <Layout>
+      <Head>
+        <link rel='stylesheet' href='/static/video-react.css' />
+      </Head>
+      <div className={classes.grid}>
+        <GridList cols={6}>
+          {videos.map((video, key) => (
+            <GridListTile
+              key={key}
+              cols={1}
+              onClick={() => onThumbnailClick(video)}
+            >
+              <Typography>{video.title}</Typography>
+            </GridListTile>
+          ))}
+        </GridList>
+      </div>
+      <VideoDialog
+        open={!!selectedVideo}
+        video={selectedVideo}
+        onClose={onCloseFullScreen}
+      />
+    </Layout>
+  )
+)

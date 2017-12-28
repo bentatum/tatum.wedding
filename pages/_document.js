@@ -45,9 +45,7 @@ export default class MyDocument extends Document {
     return (
       <html lang='en' dir='ltr'>
         <Head>
-          <title>
-            Allie & Ben Tatum - Wedding Photographs & Videos
-          </title>
+          <title>Allie & Ben Tatum - Wedding Photographs & Videos</title>
           <meta charSet='utf-8' />
           <meta name='robots' content='noindex, nofollow' />
           {/* Use minimum-scale=1 to enable GPU rasterization */}

@@ -15,8 +15,13 @@ export default function * (action) {
     yield put(pending(READ_VIDEOS))
     const videos = []
     const snapshot = yield call(rsfb.firestore.getCollection, 'wedding-videos')
-    snapshot.forEach(video => { videos.push(video.data()) })
-    yield all([put(success(READ_VIDEOS)), put(set({ videos: shuffle(videos) }))])
+    snapshot.forEach(video => {
+      videos.push(video.data())
+    })
+    yield all([
+      put(success(READ_VIDEOS)),
+      put(set({ videos: shuffle(videos) }))
+    ])
     yield put(success(READ_VIDEOS))
   } catch (err) {
     yield all([put(error(READ_VIDEOS, err)), put(failure(READ_VIDEOS))])
